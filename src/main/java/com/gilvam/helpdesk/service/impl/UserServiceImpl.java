@@ -41,7 +41,6 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Page<User> findAll(int page, int count) {
-		//Pageable pageables = new PageRequest(page, count);
 		Pageable pageables = new QPageRequest(page, count);
 		return this.userRepository.findAll(pageables);
 	}
