@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*") //permite acesso a qualquer ip ou porta
 public class AuthenticationRestController {
 
 	@Autowired
