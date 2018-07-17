@@ -2,7 +2,7 @@ package com.gilvam.helpdesk.enums;
 
 public enum PriorityEnum {
 
-	Higth,
+	High,
 	Normal,
 	Low;
 }

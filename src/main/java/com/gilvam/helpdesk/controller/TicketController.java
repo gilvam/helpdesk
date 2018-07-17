@@ -36,7 +36,8 @@ public class TicketController {
 	private UserService userService;
 
 	@PostMapping()
-	@PreAuthorize("hasAnyRole('CUSTOMER')")
+	//@PreAuthorize("hasAnyRole('CUSTOMER')")
+	@PreAuthorize("hasAnyRole('ADMIN','CUSTOMER','TECHNICIAN')")
 	public ResponseEntity<Response<Ticket>> create(HttpServletRequest request, @RequestBody Ticket ticket, BindingResult result) {
 		Response<Ticket> response = new Response<Ticket>();
 		try {
@@ -78,7 +79,8 @@ public class TicketController {
 	}
 
 	@PutMapping()
-	@PreAuthorize("hasAnyRole('CUSTOMER')")
+	//@PreAuthorize("hasAnyRole('CUSTOMER')")
+	@PreAuthorize("hasAnyRole('ADMIN','CUSTOMER','TECHNICIAN')")
 	public ResponseEntity<Response<Ticket>> update(HttpServletRequest request, @RequestBody Ticket ticket,
 												   BindingResult result) {
 		Response<Ticket> response = new Response<Ticket>();
@@ -120,7 +122,8 @@ public class TicketController {
 
 
 	@GetMapping(value = "{id}")
-	@PreAuthorize("hasAnyRole('CUSTOMER','TECHNICIAN')")
+	//@PreAuthorize("hasAnyRole('CUSTOMER','TECHNICIAN')")
+	@PreAuthorize("hasAnyRole('ADMIN','CUSTOMER','TECHNICIAN')")
 	public ResponseEntity<Response<Ticket>> findById(@PathVariable("id") String id) {
 		Response<Ticket> response = new Response<Ticket>();
 		Optional<Ticket> ticketOptional = ticketService.findById(id);
@@ -143,7 +146,8 @@ public class TicketController {
 	}
 
 	@DeleteMapping(value = "/{id}")
-	@PreAuthorize("hasAnyRole('CUSTOMER')")
+	//@PreAuthorize("hasAnyRole('CUSTOMER')")
+	@PreAuthorize("hasAnyRole('ADMIN','CUSTOMER','TECHNICIAN')")
 	public ResponseEntity<Response<String>> delete(@PathVariable("id") String id) {
 		Response<String> response = new Response<String>();
 		Optional<Ticket> ticketOptional = ticketService.findById(id);
@@ -158,7 +162,8 @@ public class TicketController {
 
 
 	@GetMapping(value = "{page}/{count}")
-	@PreAuthorize("hasAnyRole('CUSTOMER','TECHNICIAN')")
+	//@PreAuthorize("hasAnyRole('CUSTOMER','TECHNICIAN')")
+	@PreAuthorize("hasAnyRole('ADMIN','CUSTOMER','TECHNICIAN')")
 	public ResponseEntity<Response<Page<Ticket>>> findAll(HttpServletRequest request, @PathVariable int page, @PathVariable int count) {
 
 		Response<Page<Ticket>> response = new Response<Page<Ticket>>();
@@ -175,7 +180,8 @@ public class TicketController {
 	}
 
 	@GetMapping(value = "{page}/{count}/{number}/{title}/{status}/{priority}/{assigned}")
-	@PreAuthorize("hasAnyRole('CUSTOMER','TECHNICIAN')")
+	//@PreAuthorize("hasAnyRole('CUSTOMER','TECHNICIAN')")
+	@PreAuthorize("hasAnyRole('ADMIN','CUSTOMER','TECHNICIAN')")
 	public ResponseEntity<Response<Page<Ticket>>> findByParams(HttpServletRequest request,
 															   @PathVariable int page,
 															   @PathVariable int count,
@@ -211,7 +217,8 @@ public class TicketController {
 	}
 
 	@PutMapping(value = "/{id}/{status}")
-	@PreAuthorize("hasAnyRole('CUSTOMER','TECHNICIAN')")
+	//@PreAuthorize("hasAnyRole('CUSTOMER','TECHNICIAN')")
+	@PreAuthorize("hasAnyRole('ADMIN','CUSTOMER','TECHNICIAN')")
 	public ResponseEntity<Response<Ticket>> changeStatus(
 			@PathVariable("id") String id,
 			@PathVariable("status") String status,

@@ -29,7 +29,7 @@ public class UserController {
 	private PasswordEncoder passwordEncoder;
 
 	@PostMapping()
-	@PreAuthorize("hasAnyRole('ADMIN')")
+	@PreAuthorize("hasAnyRole('ADMIN','CUSTOMER','TECHNICIAN')")
 	public ResponseEntity<Response<User>> create(HttpServletRequest request, @RequestBody User user, BindingResult result) {
 		Response<User> response = new Response<User>();
 		try {
@@ -59,7 +59,7 @@ public class UserController {
 	}
 
 	@PutMapping()
-	@PreAuthorize("hasAnyRole('ADMIN')")
+	@PreAuthorize("hasAnyRole('ADMIN','CUSTOMER','TECHNICIAN')")
 	public ResponseEntity<Response<User>> update(HttpServletRequest request, @RequestBody User user,
 												 BindingResult result) {
 		Response<User> response = new Response<User>();
@@ -91,7 +91,7 @@ public class UserController {
 	}
 
 	@GetMapping(value = "{id}")
-	@PreAuthorize("hasAnyRole('ADMIN')")
+	@PreAuthorize("hasAnyRole('ADMIN','CUSTOMER','TECHNICIAN')")
 	public ResponseEntity<Response<User>> findById(@PathVariable("id") String id) {
 		Response<User> response = new Response<User>();
 		Optional<User> userOptional = userService.findById(id);
@@ -105,7 +105,7 @@ public class UserController {
 	}
 
 	@DeleteMapping(value = "/{id}")
-	@PreAuthorize("hasAnyRole('ADMIN')")
+	@PreAuthorize("hasAnyRole('ADMIN','CUSTOMER','TECHNICIAN')")
 	public ResponseEntity<Response<String>> delete(@PathVariable("id") String id) {
 		Response<String> response = new Response<String>();
 		Optional<User> userOptional = userService.findById(id);
@@ -120,7 +120,7 @@ public class UserController {
 
 
 	@GetMapping(value = "{page}/{count}")
-	@PreAuthorize("hasAnyRole('ADMIN')")
+	@PreAuthorize("hasAnyRole('ADMIN','CUSTOMER','TECHNICIAN')")
 	public  ResponseEntity<Response<Page<User>>> findAll(@PathVariable int page, @PathVariable int count) {
 		Response<Page<User>> response = new Response<Page<User>>();
 		Page<User> users = userService.findAll(page, count);
